@@ -3,8 +3,8 @@ package kr.co.seoulit.logistics.logiinfosvc.compinfo.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import kr.co.seoulit.logistics.logiinfosvc.compinfo.service.JpaCompInfoService;
 import org.eclipse.jdt.internal.compiler.ast.ArrayQualifiedTypeReference;

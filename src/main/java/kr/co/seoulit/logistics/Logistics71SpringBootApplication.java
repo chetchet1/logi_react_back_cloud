@@ -2,7 +2,7 @@ package kr.co.seoulit.logistics;
 
 import java.nio.charset.Charset;
 
-import javax.servlet.http.HttpSessionListener;
+import jakarta.servlet.http.HttpSessionListener;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

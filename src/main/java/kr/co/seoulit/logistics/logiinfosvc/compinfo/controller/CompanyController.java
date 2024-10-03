@@ -3,8 +3,8 @@ package kr.co.seoulit.logistics.logiinfosvc.compinfo.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import kr.co.seoulit.logistics.logiinfosvc.compinfo.entity.CompanyEntity;
 import kr.co.seoulit.logistics.logiinfosvc.compinfo.service.JpaCompInfoService;
@@ -22,7 +22,7 @@ import com.google.gson.reflect.TypeToken;
 import kr.co.seoulit.logistics.logiinfosvc.compinfo.service.CompInfoService;
 import kr.co.seoulit.logistics.logiinfosvc.compinfo.to.CompanyTO;
 
-//@CrossOrigin("${FRONTEND_SERVICE_URL}:3000")
+//@CrossOrigin("*")
 
 @RestController
 @RequestMapping("/compinfo/*")

@@ -3,8 +3,8 @@ package kr.co.seoulit.logistics.logiinfosvc.compinfo.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -16,7 +16,7 @@ import com.google.gson.reflect.TypeToken;
 
 import kr.co.seoulit.logistics.logiinfosvc.compinfo.service.CompInfoService;
 import kr.co.seoulit.logistics.logiinfosvc.compinfo.to.FinancialAccountAssociatesTO;
-@CrossOrigin("${FRONTEND_SERVICE_URL}:3000")
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/compinfo/*")
 public class FinancialAccountAssociatesController {

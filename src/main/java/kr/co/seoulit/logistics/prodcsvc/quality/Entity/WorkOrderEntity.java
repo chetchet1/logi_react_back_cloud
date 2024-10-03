@@ -3,7 +3,7 @@ package kr.co.seoulit.logistics.prodcsvc.quality.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
