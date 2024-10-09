@@ -23,36 +23,6 @@ pipeline {
             }
         }
 
-        // Terraform을 사용해 클러스터 자원 관리
-        stage('Terraform Apply') {
-            steps {
-                dir('E:/docker_dev/terraform-codes') {
-                    script {
-                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-key']]) {
-                            bat '''
-                            set AWS_ACCESS_KEY_ID=%AWS_ACCESS_KEY_ID%
-                            set AWS_SECRET_ACCESS_KEY=%AWS_SECRET_ACCESS_KEY%
-                            terraform apply -auto-approve
-                            '''
-                        }
-                    }
-                }
-            }
-        }
-
-        // AWS EKS 클러스터에 로그인
-        stage('Update Kubeconfig') {
-            steps {
-                script {
-                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-key']]) {
-                        bat '''
-                        aws eks update-kubeconfig --region %REGION% --name test-eks-cluster
-                        '''
-                    }
-                }
-            }
-        }
-
         // 프론트엔드 및 백엔드 서비스 배포
         stage('Apply Services') {
             steps {

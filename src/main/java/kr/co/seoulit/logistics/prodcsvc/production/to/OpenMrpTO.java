@@ -20,5 +20,6 @@ public class OpenMrpTO extends BaseTO {
 	private String caculatedAmount;
 	private int requiredAmount;
 	private String unitOfMrp;
-
+	private String standardUnitPrice; // 원자재 단가
+	private String totalPrice;        // 총 가격
 }

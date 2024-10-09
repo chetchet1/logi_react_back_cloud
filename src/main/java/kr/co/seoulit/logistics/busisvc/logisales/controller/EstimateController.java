@@ -40,6 +40,9 @@ public class EstimateController {
 	) {
 		map = new ModelMap();
 
+		// 파라미터 값을 출력
+		System.out.println("왔냐 : startDate = " + startDate + ", endDate = " + endDate + ", dateSearchCondition = " + dateSearchCondition);
+
 		try {
 			ArrayList<EstimateTO> estimateTOList = logisalesService.getEstimateList(dateSearchCondition, startDate, endDate);
 

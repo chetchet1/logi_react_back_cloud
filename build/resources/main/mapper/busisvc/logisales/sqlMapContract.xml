@@ -218,6 +218,7 @@
 		<result property="description" column="DESCRIPTION"  />
 	</resultMap>
 
+	<!-- 20240819 수정 : 조건문의 프로세싱 스테이터스와 오퍼레이션어쩌구가 널인것으로 바꿈-->
 	<select id="selectContractDetailListInMpsAvailable" parameterType="map" resultMap="contractDetailInMpsAvailableResult">
 		SELECT C.CONTRACT_NO,
 		C.CONTRACT_TYPE,
@@ -234,8 +235,8 @@
 		CD.DESCRIPTION
 		FROM contract_detail CD,CONTRACT C
 		WHERE C.CONTRACT_NO = cd.contract_no
-		AND PROCESSING_STATUS ='PLANNING' 			/*null에서 PLANNING로 수정 함 */
-		AND operation_completed_status ='PLANNING'  /*null에서 PLANNING로 수정 함 */
+		AND PROCESSING_STATUS is null
+		AND operation_completed_status is null
 		<if test='searchCondition=="contractDate"'>
 			AND TO_DATE(C.CONTRACT_DATE,'YYYY-MM-DD') BETWEEN TO_DATE(#{startDate},'YYYY-MM-DD') AND TO_DATE(#{endDate},'YYYY-MM-DD')
 		</if>

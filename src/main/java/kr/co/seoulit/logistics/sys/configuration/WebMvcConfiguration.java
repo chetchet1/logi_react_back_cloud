@@ -44,14 +44,13 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		WebMvcConfigurer.super.addInterceptors(registry);
 	}
 
-	// 2개의 빈은 인코딩 관련.
 	@Bean
-	public Filter characterEncodingFilter() {
-		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+	public Filter characterEncodingFilter(){
+		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();    //CharacterEncodingFilter는 스프링이 제공하는 클래스로 웹에서 주고받는 데이터의 헤더값을 UTF-8로 인코딩 해줌.
 		characterEncodingFilter.setEncoding("UTF-8");
-		characterEncodingFilter.setForceEncoding(true);
+		characterEncodingFilter.setForceEncoding(true);  //기본값은 false로 설정되어 있음.
 
-		return (Filter) characterEncodingFilter;
+		return characterEncodingFilter;
 	}
 
 	@Bean

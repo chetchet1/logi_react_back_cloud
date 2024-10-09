@@ -47,12 +47,13 @@ dependencies {
 
 	// Oracle JDBC 최신 버전
 	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '21.9.0.0'
+	implementation group: 'com.oracle.database.nls', name: 'orai18n', version: '23.5.0.24.07'
 
 	// Log4j
 	implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
 
-	// Oracle JDBC
-	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
+//	// Oracle JDBC
+//	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
 
 	// Lombok
 	compileOnly 'org.projectlombok:lombok'
