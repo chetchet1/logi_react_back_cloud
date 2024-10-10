@@ -9,7 +9,7 @@ RUN apt-get update && \
     dpkg-reconfigure --frontend noninteractive tzdata
 
 # WAR 파일을 Docker 이미지로 복사
-COPY build/libs/Logistics77_SpringBoot-0.0.1-SNAPSHOT /app/app.war
+COPY build/libs/Logistics77_SpringBoot-0.0.1-SNAPSHOT.war /app/app.war
 
 # 포트 노출
 EXPOSE 9102
