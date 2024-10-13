@@ -17,4 +17,3 @@ EXPOSE 9102
 # WAR 파일을 실행
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 
-ENV SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
