@@ -57,7 +57,7 @@ pipeline {
                 script {
                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-key']]) {
                         // 1. kubectl 명령어로 Kafka 서비스의 호스트 이름을 가져옴
-                        def kafka_service_url = powershell(script: 'kubectl get service kafka-service -o jsonpath="{.status.loadBalancer.ingress[0].hostname}"', returnStdout: true).trim()
+                        def kafka_service_url = powershell(script: 'kubectl get service kafka -o jsonpath="{.status.loadBalancer.ingress[0].hostname}"', returnStdout: true).trim()
                         echo "Kafka Service URL: ${kafka_service_url}"
 
                         // 2. PowerShell 스크립트로 application.properties 파일 업데이트
