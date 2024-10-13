@@ -113,63 +113,35 @@ public class MrpController {
 //		return map;
 //	}
 
-//	//정식 메서드임. 카프카 되면 이거 열어라
-	//MRP 등록되면 여기로 넘어온다!! 가격정보까지 다넘어온다!! 20241008
-//	@RequestMapping(value = "/mrp", method = RequestMethod.POST)
-//	public ModelMap registerMrp(HttpServletRequest request, HttpServletResponse response) {
-//		String batchList = request.getParameter("batchList");
-//		String mrpRegisterDate = request.getParameter("mrpRegisterDate");
-//		Gson gson = new Gson();
-//		Type type = new TypeToken<ArrayList<HashMap<String, Object>>>() {}.getType();
-//		ArrayList<HashMap<String, Object>> dataList = gson.fromJson(batchList, type);
-//
-//		ArrayList<String> mpsList = new ArrayList<>();
-//		for (HashMap<String, Object> item : dataList) {
-//			mpsList.add(gson.toJson(item));
-//		}
-//		System.out.println("mpsList = " + mpsList);
-//
-//		ModelMap map = new ModelMap();
-//		try {
-//			// MRP 등록 처리
-//			HashMap<String, Object> resultMap = productionService.registerMrp(mrpRegisterDate, mpsList);
-//
-//			// 카프카로 mpsList 전송
-//			String mpsListJson = gson.toJson(mpsList); // mpsList를 JSON 문자열로 변환
-//			kafkaTemplate.send(TOPIC, mpsListJson); // 카프카에 메시지 전송
-//			System.out.println("Sent to Kafka: " + mpsListJson);
-//
-//			map.put("result", resultMap.get("result"));
-//			map.put("errorCode", resultMap.get("errorCode"));
-//			map.put("errorMsg", resultMap.get("errorMsg"));
-//		} catch (Exception e1) {
-//			e1.printStackTrace();
-//			map.put("errorCode", -1);
-//			map.put("errorMsg", e1.getMessage());
-//		}
-//		return map;
-//	}
-
-	// 카프카 테스트용
+	//정식 메서드임. 카프카 되면 이거 열어라
+    //	MRP 등록되면 여기로 넘어온다!! 가격정보까지 다넘어온다!! 20241008
 	@RequestMapping(value = "/mrp", method = RequestMethod.POST)
 	public ModelMap registerMrp(HttpServletRequest request, HttpServletResponse response) {
 		String batchList = request.getParameter("batchList");
+		String mrpRegisterDate = request.getParameter("mrpRegisterDate");
 		Gson gson = new Gson();
 		Type type = new TypeToken<ArrayList<HashMap<String, Object>>>() {}.getType();
 		ArrayList<HashMap<String, Object>> dataList = gson.fromJson(batchList, type);
 
-		// mpsList를 직접 JSON 배열로 생성
-		String mpsListJson = gson.toJson(dataList); // 데이터 리스트를 JSON 배열로 변환
-		System.out.println("mpsList = " + mpsListJson); // JSON 배열 출력
+		ArrayList<String> mpsList = new ArrayList<>();
+		for (HashMap<String, Object> item : dataList) {
+			mpsList.add(gson.toJson(item));
+		}
+		System.out.println("mpsList = " + mpsList);
 
 		ModelMap map = new ModelMap();
 		try {
-			// 카프카로 mpsListJson 전송
+			// MRP 등록 처리
+			HashMap<String, Object> resultMap = productionService.registerMrp(mrpRegisterDate, mpsList);
+
+			// 카프카로 mpsList 전송
+			String mpsListJson = gson.toJson(mpsList); // mpsList를 JSON 문자열로 변환
 			kafkaTemplate.send(TOPIC, mpsListJson); // 카프카에 메시지 전송
 			System.out.println("Sent to Kafka: " + mpsListJson);
 
-			map.put("result", "Success");
-			map.put("message", "Data sent to Kafka successfully.");
+			map.put("result", resultMap.get("result"));
+			map.put("errorCode", resultMap.get("errorCode"));
+			map.put("errorMsg", resultMap.get("errorMsg"));
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			map.put("errorCode", -1);
@@ -177,6 +149,34 @@ public class MrpController {
 		}
 		return map;
 	}
+
+//	// 카프카 테스트용
+//	@RequestMapping(value = "/mrp", method = RequestMethod.POST)
+//	public ModelMap registerMrp(HttpServletRequest request, HttpServletResponse response) {
+//		String batchList = request.getParameter("batchList");
+//		Gson gson = new Gson();
+//		Type type = new TypeToken<ArrayList<HashMap<String, Object>>>() {}.getType();
+//		ArrayList<HashMap<String, Object>> dataList = gson.fromJson(batchList, type);
+//
+//		// mpsList를 직접 JSON 배열로 생성
+//		String mpsListJson = gson.toJson(dataList); // 데이터 리스트를 JSON 배열로 변환
+//		System.out.println("mpsList = " + mpsListJson); // JSON 배열 출력
+//
+//		ModelMap map = new ModelMap();
+//		try {
+//			// 카프카로 mpsListJson 전송
+//			kafkaTemplate.send(TOPIC, mpsListJson); // 카프카에 메시지 전송
+//			System.out.println("Sent to Kafka: " + mpsListJson);
+//
+//			map.put("result", "Success");
+//			map.put("message", "Data sent to Kafka successfully.");
+//		} catch (Exception e1) {
+//			e1.printStackTrace();
+//			map.put("errorCode", -1);
+//			map.put("errorMsg", e1.getMessage());
+//		}
+//		return map;
+//	}
 
 	@RequestMapping(value="/mrp/gathering-list", method=RequestMethod.GET)
 	public ModelMap getMrpGatheringList(HttpServletRequest request, HttpServletResponse response) {

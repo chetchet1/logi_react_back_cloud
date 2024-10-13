@@ -108,3 +108,38 @@ pipeline {
         }
     }
 }
+
+
+// # Persistence settings
+// persistence:
+//   enabled: true
+//   storageClass: ebs-sc
+//   accessModes:
+//     - ReadWriteOnce
+//   size: 8Gi
+//
+// # Network settings
+// service:
+//   type: LoadBalancer
+// listeners:
+//   external:
+//     enabled: true
+//     port: 9092
+//     type: LoadBalancer
+// advertisedListeners:
+//   - name: external
+//     port: 9092
+//     host: ${LOAD_BALANCER_IP}
+//
+// # Security settings
+// configuration:
+//   security:
+//     enabled: false
+//
+//
+
+
+
+
+
+
