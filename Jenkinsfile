@@ -62,7 +62,7 @@ pipeline {
 
                         // 2. PowerShell 스크립트로 application.properties 파일 업데이트
                         bat """
-                        powershell -Command "\$kafkaUrl = '${kafka_service_url}'; (Get-Content 'E:\\docker_Logi\\logi_react_back_cloud\\src\\main\\resources\\application.properties') -replace 'spring.kafka.bootstrap-servers=.*', 'spring.kafka.bootstrap-servers=\$kafkaUrl:9092' | Set-Content 'E:\\docker_Logi\\logi_react_back_cloud\\src\\main\\resources\\application.properties';"
+                        powershell -Command "\$kafkaUrl = '${kafka_service_url}'; (Get-Content 'E:\\docker_Logi\\logi_react_back_cloud\\src\\main\\resources\\application.properties') -replace 'spring.kafka.bootstrap-servers=.*', 'spring.kafka.bootstrap-servers=172.31.15.87:9092' | Set-Content 'E:\\docker_Logi\\logi_react_back_cloud\\src\\main\\resources\\application.properties';"
                         """
                     }
                 }
